@@ -1,0 +1,508 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.10f1 (ff3792e53c62) revision 16725906'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22631) 64bit Professional' Language: 'en' Physical Memory: 32472 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker4
+-projectPath
+C:/Users/Ekincan/Documents/ConnectedGames/UnityProject/JestryxLegends/Assets
+-logFile
+Logs/AssetImportWorker4.log
+-srvPort
+50347
+Successfully changed project path to: C:/Users/Ekincan/Documents/ConnectedGames/UnityProject/JestryxLegends/Assets
+C:/Users/Ekincan/Documents/ConnectedGames/UnityProject/JestryxLegends/Assets
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [8564] Host "[IP] 172.16.6.8 [Port] 0 [Flags] 2 [Guid] 1189465941 [EditorId] 1189465941 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4FKENU7) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [8564] Host "[IP] 172.16.6.8 [Port] 0 [Flags] 2 [Guid] 1189465941 [EditorId] 1189465941 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4FKENU7) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 19 workers.
+Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.10f1 (ff3792e53c62)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Ekincan/Documents/ConnectedGames/UnityProject/JestryxLegends/Assets/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3070 Laptop GPU (ID=0x249d)
+    Vendor:   NVIDIA
+    VRAM:     8033 MB
+    Driver:   31.0.15.4592
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56072
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.008198 seconds.
+- Loaded All Assemblies, in  0.372 seconds
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.253 seconds
+Domain Reload Profiling: 624ms
+	BeginReloadAssembly (104ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (65ms)
+	LoadAllAssembliesAndSetupDomain (159ms)
+		LoadAssemblies (102ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (157ms)
+			TypeCache.Refresh (155ms)
+				TypeCache.ScanAssembly (141ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (254ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (194ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (13ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (127ms)
+			ProcessInitializeOnLoadMethodAttributes (46ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.253 seconds
+Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.315 seconds
+Domain Reload Profiling: 567ms
+	BeginReloadAssembly (164ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (30ms)
+	RebuildCommonClasses (34ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (32ms)
+	LoadAllAssembliesAndSetupDomain (8ms)
+		LoadAssemblies (89ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (5ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (316ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (182ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (25ms)
+			ProcessInitializeOnLoadAttributes (118ms)
+			ProcessInitializeOnLoadMethodAttributes (18ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3 unused Assets / (39.9 KB). Loaded Objects now: 494.
+Memory consumption went from 55.6 MB to 55.6 MB.
+Total: 4.771100 ms (FindLiveObjects: 0.093400 ms CreateObjectMapping: 0.012800 ms MarkObjects: 4.298300 ms  DeleteObjects: 0.363900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 13405.265923 seconds.
+  path: Assets/Mars Landscape 3D/Prefabs/ML3D_Rocks_01_03.prefab
+  artifactKey: Guid(a9d47e8a5c98f498a84556b79162a1cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Prefabs/ML3D_Rocks_01_03.prefab using Guid(a9d47e8a5c98f498a84556b79162a1cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0b3135ba995e25331f07d1a7bcb8d9b') in 0.161684 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Mars Landscape 3D/Prefabs/ML3D_Rocks_02_01.prefab
+  artifactKey: Guid(231fc9374d8be493cb2502622a93f1e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Prefabs/ML3D_Rocks_02_01.prefab using Guid(231fc9374d8be493cb2502622a93f1e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ead24130358c634e649c102090eeda1') in 0.041338 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time since last request: 17.691849 seconds.
+  path: Assets
+  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a4fe85251aa2e89732c359432baa2c3') in 0.000696 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets / (0.8 KB). Loaded Objects now: 503.
+Memory consumption went from 59.2 MB to 59.2 MB.
+Total: 3.417900 ms (FindLiveObjects: 0.055600 ms CreateObjectMapping: 0.005600 ms MarkObjects: 3.323700 ms  DeleteObjects: 0.031900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 12.330741 seconds.
+  path: Assets/Wall_M.mat
+  artifactKey: Guid(eed71e5f2817b2445a4cceba01ea4eec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wall_M.mat using Guid(eed71e5f2817b2445a4cceba01ea4eec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b30da96e315fb5e3d5d2ea27ac5c5f68') in 0.238288 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 77.584991 seconds.
+  path: Assets/Blocking/Materials/Test_Floor.mat
+  artifactKey: Guid(730d9f192316ecc44b7b8f28c367e624) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blocking/Materials/Test_Floor.mat using Guid(730d9f192316ecc44b7b8f28c367e624) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a7e079dbe298856f0220d2647bfb5f1') in 0.024419 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000329 seconds.
+  path: Assets/Blocking/Materials/uv1.png
+  artifactKey: Guid(b6086a53276a4544894fbf3bf67cf06e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blocking/Materials/uv1.png using Guid(b6086a53276a4544894fbf3bf67cf06e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac4233d144b1e228e6881154f75bcc72') in 0.043604 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 158.480250 seconds.
+  path: Assets/BoxMap.unity
+  artifactKey: Guid(75194a8c8de6999488d8cce558304911) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/BoxMap.unity using Guid(75194a8c8de6999488d8cce558304911) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c428ca1a2dcc8098e555999f7f47ca46') in 0.000881 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 47.719297 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Smoke.png
+  artifactKey: Guid(7e92e657da92e4461a765169324acb40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Smoke.png using Guid(7e92e657da92e4461a765169324acb40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e23dec2dba4e4506f33da67382923f1') in 0.023561 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.006798 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Materials/ML3D_Rocks_02.mat
+  artifactKey: Guid(ddbf0e092d7944606a2c5d9bfb10044c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Materials/ML3D_Rocks_02.mat using Guid(ddbf0e092d7944606a2c5d9bfb10044c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '384470d44a52c8bb8d461c647d8c6f89') in 0.020225 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 0.006393 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Ground_01_D.png
+  artifactKey: Guid(233f547ce1f6647ccaff479cd0d061cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Ground_01_D.png using Guid(233f547ce1f6647ccaff479cd0d061cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '129082e2e6b44ed8e58647e55b482200') in 0.023112 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.011831 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/SandDetails.png
+  artifactKey: Guid(117845fd596dd4fc0b7d30308a6393f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/SandDetails.png using Guid(117845fd596dd4fc0b7d30308a6393f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc173c6f880b6b26fa259ce96d18ce69') in 0.023704 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.007850 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_00_MetallicSmoothness.png
+  artifactKey: Guid(fa2aec83b723248819f242026f0d5870) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_00_MetallicSmoothness.png using Guid(fa2aec83b723248819f242026f0d5870) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2107a86908d64e4c4ef89d8ffd87160c') in 0.023431 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.015714 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Ground_00_D.png
+  artifactKey: Guid(6a14e406b18fb48aaa310a326876f97a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Ground_00_D.png using Guid(6a14e406b18fb48aaa310a326876f97a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b63ebc0332047b85baa1a520a5fb56d') in 0.022819 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.004411 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Geometry/ML3D_Rocks_01.fbx
+  artifactKey: Guid(3ddc61472d3f447bfb36a22d4488debd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Geometry/ML3D_Rocks_01.fbx using Guid(3ddc61472d3f447bfb36a22d4488debd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a49a3d20ca95bf22fa22b2722da214d') in 0.134245 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 24
+========================================================================
+Received Import Request.
+  Time since last request: 0.009303 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_02_AlbedoTransparency.png
+  artifactKey: Guid(daefb2272129642d3bd999badd1f52fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_02_AlbedoTransparency.png using Guid(daefb2272129642d3bd999badd1f52fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed6c633b0de06b4f4724131e92aa95ee') in 0.023096 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.008269 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Materials/Ground_01.terrainlayer
+  artifactKey: Guid(819d17b48ed9544dda00bd5dad414d49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Materials/Ground_01.terrainlayer using Guid(819d17b48ed9544dda00bd5dad414d49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2c8d5578098ea463f4eb9f497a944ab') in 0.030228 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.007818 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_01_AlbedoTransparency.png
+  artifactKey: Guid(b49e9936f6ed542a0a7dadcc34d9cac7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_01_AlbedoTransparency.png using Guid(b49e9936f6ed542a0a7dadcc34d9cac7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9321b34a1f4978025a59843eacdc2e3e') in 0.022917 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.005740 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Materials/ML3D_Rocks_01.mat
+  artifactKey: Guid(f48e1f81b0dd94a4db3205ed848ae5bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Materials/ML3D_Rocks_01.mat using Guid(f48e1f81b0dd94a4db3205ed848ae5bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42a86fe67973a8f271ae6bfe3c283108') in 0.017400 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 0.009904 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Ground_02_N.png
+  artifactKey: Guid(860ff13a2dd4c4bd382161ad6bdd4180) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Ground_02_N.png using Guid(860ff13a2dd4c4bd382161ad6bdd4180) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9e276f3abccd7bbe2e4407c5ddf2612') in 0.027808 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.010491 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_02_Normal.png
+  artifactKey: Guid(7fdaaba5c809c461ab5d477d5bd4a3cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_02_Normal.png using Guid(7fdaaba5c809c461ab5d477d5bd4a3cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df6e9ea5bb2b6e2bc12b44f74f8a3f09') in 0.025504 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.002965 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Materials/ML3D_Rocks_00.mat
+  artifactKey: Guid(adf33d9b462294ac4bb0b485c9ecedfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Materials/ML3D_Rocks_00.mat using Guid(adf33d9b462294ac4bb0b485c9ecedfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e324318705bd91f7c4d9f5a3d9298a59') in 0.012809 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 0.011558 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Ground_01_N.png
+  artifactKey: Guid(444663d1ef57f4eebb13d56810d5f3d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Ground_01_N.png using Guid(444663d1ef57f4eebb13d56810d5f3d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd0dde0fc1e300e83826d829f70a58e7') in 0.028041 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.014579 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Ground_03_N.png
+  artifactKey: Guid(bbd8957f6bd7747ec91bb7da878e0e5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Ground_03_N.png using Guid(bbd8957f6bd7747ec91bb7da878e0e5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f1a5aae2ae99797eeeb360676ba9a5c') in 0.023778 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.010027 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Ground_00_N.png
+  artifactKey: Guid(ff2cbe651cfbc44a4ba4eec496a17c20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Ground_00_N.png using Guid(ff2cbe651cfbc44a4ba4eec496a17c20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '099061d9093ac894b3b4e9a7db9965c2') in 0.024838 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.011311 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_00_Normal.png
+  artifactKey: Guid(d1f1907a43022430c8a730e0eba4af48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_00_Normal.png using Guid(d1f1907a43022430c8a730e0eba4af48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d028f8a7a75573c3a28177b6935de67') in 0.022430 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.008741 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_02_MetallicSmoothness.png
+  artifactKey: Guid(300a1a5e259454ccfb164c158b79349f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_02_MetallicSmoothness.png using Guid(300a1a5e259454ccfb164c158b79349f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '912f3d6cc3d33ad5eb06bb40c625c307') in 0.010667 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.003884 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Geometry/ML3D_Rocks_00.fbx
+  artifactKey: Guid(311fb4af49f45401fb66880f53ca868b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Geometry/ML3D_Rocks_00.fbx using Guid(311fb4af49f45401fb66880f53ca868b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6be057fe7446264fa548afc32ee0624') in 0.045509 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 24
+========================================================================
+Received Import Request.
+  Time since last request: 0.006957 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_01_MetallicSmoothness.png
+  artifactKey: Guid(39f957b525e964fbebd7624e2c297f8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_01_MetallicSmoothness.png using Guid(39f957b525e964fbebd7624e2c297f8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c946c66e3ad11d3ea9bb2e64b89e0825') in 0.014537 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.003033 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Materials/Ground_02.terrainlayer
+  artifactKey: Guid(e118f863714604de4ab4a01b5cea80c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Materials/Ground_02.terrainlayer using Guid(e118f863714604de4ab4a01b5cea80c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08dc350a00553df8bde80375422a62ef') in 0.028017 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.013946 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_01_Normal.png
+  artifactKey: Guid(26fa470ebd9114fec929d301808630ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_01_Normal.png using Guid(26fa470ebd9114fec929d301808630ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57f6f985b485805f71d930735fd7511d') in 0.025659 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.003719 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Geometry/ML3D_Rocks_02.fbx
+  artifactKey: Guid(58a5ab3dee2df4b7ca1055a0d6b8fe60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Geometry/ML3D_Rocks_02.fbx using Guid(58a5ab3dee2df4b7ca1055a0d6b8fe60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46c13cf70b83571d0694687beccc4734') in 0.054958 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 29
+========================================================================
+Received Import Request.
+  Time since last request: 0.010124 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Ground_02_D.png
+  artifactKey: Guid(5a3ca0616b34a42938c766ccabd723e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Ground_02_D.png using Guid(5a3ca0616b34a42938c766ccabd723e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e349b3bab4909ad26382805cf02af64') in 0.023677 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.004113 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Geometry/Terrain.asset
+  artifactKey: Guid(bcc00276e3c6f482bb6d47fd04ead463) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Geometry/Terrain.asset using Guid(bcc00276e3c6f482bb6d47fd04ead463) Importer(815301076,1909f56bfc062723c751e8b465ee728b) The tree ML3D_Rocks_02_04 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_02_03 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_02_02 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_02_01 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_02_00 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_00_02 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_00_01 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_01_02 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_01_03 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+The tree ML3D_Rocks_01_01 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+ -> (artifact id: 'f1fa63b824f97f900c57b34c4921884e') in 0.032150 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 76
+========================================================================
+Received Import Request.
+  Time since last request: 0.005181 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Materials/Ground_03.terrainlayer
+  artifactKey: Guid(13f086762e8674530af62b721b1065e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Materials/Ground_03.terrainlayer using Guid(13f086762e8674530af62b721b1065e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a615c7398ff9857a6f12e3788f9c276') in 0.027341 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.008861 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_00_AlbedoTransparency.png
+  artifactKey: Guid(c32a40268d33d4d7f98b1fd1fd3eb2b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/ML3D_Rocks_00_AlbedoTransparency.png using Guid(c32a40268d33d4d7f98b1fd1fd3eb2b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f7c469948beabc88f10bc9defc51be3') in 0.022500 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.003789 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Materials/Ground_00.terrainlayer
+  artifactKey: Guid(2246f8960950e405fb60460c9faff86c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Materials/Ground_00.terrainlayer using Guid(2246f8960950e405fb60460c9faff86c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72674d1588b4d4690002d4280a5980d5') in 0.028511 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.015830 seconds.
+  path: Assets/Mars Landscape 3D/Resources/Textures/Ground_03_D.png
+  artifactKey: Guid(d5a46b20f7fe248209db917d1e6be190) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mars Landscape 3D/Resources/Textures/Ground_03_D.png using Guid(d5a46b20f7fe248209db917d1e6be190) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca13e9695cf72c9c3c77e1e7cbf0b88d') in 0.022873 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
