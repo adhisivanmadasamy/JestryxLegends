@@ -5,15 +5,17 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     public bool open;
-    [SerializeField] string MenuName;
+    public string MenuName;
    
     public void Open()
     {
+        open= true;
         gameObject.SetActive(true);
     }
 
     public void Close()
     {
+        open = false;
         gameObject.SetActive(false);
     }
 
