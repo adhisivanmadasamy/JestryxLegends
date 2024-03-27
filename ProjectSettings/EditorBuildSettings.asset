@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestGameScene.unity
     guid: f6cdb531b4b4945469277761d033758f
+  - enabled: 0
+    path: Assets/Scenes/BoxMap.unity
+    guid: 75194a8c8de6999488d8cce558304911
   m_configObjects: {}
