@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using Photon.Realtime;
 using System.Linq;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -18,10 +19,16 @@ public class Launcher : MonoBehaviourPunCallbacks
     public Transform RoomListContent;
     public GameObject RoomListItemPrefab;
 
+
+
     public Transform PlayerListContent;
     public GameObject PlayerListItemPrefab;
 
+    public Transform TeamListContent;
+
     public GameObject StartGameButton;
+
+    public TextMeshProUGUI TeamNameText, PlayerNameText;
 
     private void Awake()
     {
@@ -95,8 +102,87 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        PhotonNetwork.LoadLevel(1);
+        //PhotonNetwork.LoadLevel(1);
+        SeparatePlayersIntoTeams();
+        
     }
+
+    void SeparatePlayersIntoTeams()
+    {
+        Player[] players = PhotonNetwork.PlayerList;
+        int playerCount = players.Length;    
+       
+
+        // Assign remaining players to balance teams
+        for (int i = 0; i < playerCount; i++)
+        {
+            string team = (i % 2 == 0) ? "TeamA" : "TeamB";
+            players[i].SetCustomProperties(new Hashtable { { "Team", team } });
+            Debug.Log("Player: " + players[i].NickName + "/Team is " + team);
+        }
+
+        OpenAgentSelectionPanel();
+    }
+    public void OpenAgentSelectionPanel()
+    {
+        // Ensure that only the host calls the RPC to avoid unnecessary network traffic
+        
+            photonView.RPC("RPC_OpenAgentSelectionPanel", RpcTarget.AllViaServer);
+        
+    }
+
+    [PunRPC]
+    void RPC_OpenAgentSelectionPanel()
+    {
+        MenuManager.instance.OpenMenu("agentpanel");
+
+        // Clear existing content in the agent selection panel
+        foreach (Transform child in TeamListContent)
+        {
+            Destroy(child.gameObject);
+        }
+
+       
+        string localPlayerTeam = (string)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
+        string PlayerName = (string)PhotonNetwork.LocalPlayer.NickName;
+
+
+        TeamNameText.text = localPlayerTeam;
+        if(TeamNameText.text == "TeamA")
+        {
+            TeamNameText.color = Color.red;
+        }
+        else
+        {
+            TeamNameText.color = Color.blue;
+        }       
+        
+        PlayerNameText.text = PlayerName;
+        
+
+        // Display only players from the local player's team
+        Player[] players = PhotonNetwork.PlayerList;
+        foreach (Player player in players)
+        {
+            string playerTeam = (string)player.CustomProperties["Team"];            
+
+            if (playerTeam == localPlayerTeam)
+            {
+                GameObject playerUI = Instantiate(PlayerListItemPrefab, TeamListContent);
+                PlayerListItem playerListItem = playerUI.GetComponent<PlayerListItem>();
+                if (playerListItem != null)
+                {
+                    playerListItem.SetUp(player);
+                    Debug.Log(PhotonNetwork.LocalPlayer.NickName + " is in team:" + localPlayerTeam);
+                }
+            }
+        }
+    }
+
+       
+
+
+
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();

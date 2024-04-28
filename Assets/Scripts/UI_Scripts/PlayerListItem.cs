@@ -9,11 +9,18 @@ public class PlayerListItem : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI text;
     Player player;
+    public TextMeshProUGUI AgentSelected;
 
     public void SetUp(Player _player)
     {
         player = _player;
         text.text = _player.NickName;
+    }
+
+    public void UpdateAgent(string agentName)
+    {
+        AgentSelected.gameObject.SetActive(true);
+        AgentSelected.text = agentName;
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
