@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,17 @@ public class SingleShotGun : Gun
         ray.origin = cam.transform.position;
         if(Physics.Raycast(ray, out RaycastHit hitInfo))
         {
-            Debug.Log("Hit on: "+ hitInfo.collider.gameObject.name);
-            hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(((GunInfo)itemInfo).damage);
+            PhotonView hitPhotonView = hitInfo.collider.gameObject.GetComponent<PhotonView>();
+            if ((hitPhotonView != null))
+            {
+                string shooterTeam = (string)PhotonNetwork.LocalPlayer.CustomProperties["Team"];                
+                string hitPlayerTeam = (string)hitPhotonView.Owner?.CustomProperties["Team"];   
+                if(hitPlayerTeam != shooterTeam)
+                {
+                    Debug.Log("Hit on: " + hitInfo.collider.gameObject.name);
+                    hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(((GunInfo)itemInfo).damage);
+                }            
+            }            
         }
     }
 }

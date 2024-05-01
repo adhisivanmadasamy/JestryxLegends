@@ -43,6 +43,7 @@ MonoBehaviour:
   - SyncLockStatus
   - SyncSelectedAgent
   - RPC_OpenAgentSelectionPanel
+  - SyncItems
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

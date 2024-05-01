@@ -24,10 +24,23 @@ public class PlayerManager : MonoBehaviour
     }
 
     void CreateController()
-    {
-        Debug.Log("Player Controller Created");
+    {        
         Transform spawnpoint = SpawnManager.instance.GetSpawnPoint();
-        controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID});
+        string CharName = (string)PhotonNetwork.LocalPlayer.CustomProperties["SelectedAgent"];
+        if(CharName == "Connor")
+        {
+            controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ConnorPlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
+        }
+        else if(CharName == "Chloe")
+        {
+            controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ChloePlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
+        }
+        else if(CharName == "Ryan")
+        {
+            controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "RyanPlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
+        }
+        
+        Debug.Log(CharName + "Player Controller Created");
     }
 
     public void Die()

@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
     [SerializeField] GameObject cameraHolder;
 
-    [SerializeField] Item[] items;
+    public Item[] items;
+
+    public Item Pistol, Rifle, Knife;
 
     int itemIndex;
     int previousItemIndex = -1;
@@ -61,14 +63,15 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         Move();
          
         
-        for(int i = 0; i < items.Length; i++)
-        {
-            if(Input.GetKeyDown((i + 1).ToString()))
-            {
-                EquipItem(i); 
-                break;
-            }
-        }
+
+        //for(int i = 0; i < items.Length; i++)
+       // {
+       //     if(Input.GetKeyDown((i + 1).ToString()))
+       //     {
+        //        EquipItem(i); 
+        //        break;
+        //    }
+        //}
 
         if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
         {
@@ -182,6 +185,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public void TakeDamage(float damage)
     {
+
         PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
     }
 
@@ -199,6 +203,13 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         {
             Die();
         }
+    }
+
+    [PunRPC]
+    public void SyncItems(Item[] updatedItems)
+    {
+        // Update the items array with the synchronized values
+        items = updatedItems;
     }
 
     void Die()

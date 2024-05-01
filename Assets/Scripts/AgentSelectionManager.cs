@@ -22,6 +22,7 @@ public class AgentSelectionManager : MonoBehaviourPunCallbacks
 
     
 
+    
     public void SelectAgent(int agentIndex)
     {
         if (!agentsLocked)
@@ -114,6 +115,8 @@ public class AgentSelectionManager : MonoBehaviourPunCallbacks
             }
         
     }
+
+    
 
     
 

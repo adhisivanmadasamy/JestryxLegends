@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,14 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] Menu[] menus;
 
+    
 
     private void Awake()
     {
         instance = this;
     }
+
+    
     public void OpenMenu(string menuName)
     {
         for (int i = 0; i < menus.Length; i++)
@@ -42,4 +46,22 @@ public class MenuManager : MonoBehaviour
     {
         menu.Close();
     }
+
+    public bool MenuBool(string MenuName)
+    {
+        bool isOpen = false;
+
+        for (int i = 0;i < menus.Length;i++)
+        {            
+            if (menus[i].MenuName == MenuName)
+            {
+                isOpen = menus[i].open;
+            }
+        }
+
+        return isOpen;
+    }
+
+    
+
 }

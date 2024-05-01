@@ -30,15 +30,25 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public TextMeshProUGUI TeamNameText, PlayerNameText;
 
+    public float TimeDuration = 30f;
+    public bool isTimerOn = false;
+    public float CurrentTime;
+    public TextMeshProUGUI TimeText;
+
     private void Awake()
     {
         Instance = this;
     }
 
     void Start()
-    {
+    {        
         Debug.Log("Connecting...");
         PhotonNetwork.ConnectUsingSettings();        
+    }
+
+    public void Update()
+    {
+        TimerRun();
     }
 
     public override void OnConnectedToMaster()
@@ -101,12 +111,30 @@ public class Launcher : MonoBehaviourPunCallbacks
 
 
     public void StartGame()
-    {
-        //PhotonNetwork.LoadLevel(1);
-        SeparatePlayersIntoTeams();
-        
+    {        
+        SeparatePlayersIntoTeams();        
     }
 
+
+    public void StartTimer()
+    {
+        isTimerOn = true;
+        CurrentTime = TimeDuration;
+    }
+
+    public void TimerRun()
+    {
+        if (isTimerOn)
+        {
+            CurrentTime -= Time.deltaTime;
+            TimeText.text = Mathf.Round(CurrentTime).ToString();
+            if (CurrentTime <= 0f)
+            {
+                isTimerOn= false;
+                OpenMainLevel();
+            }
+        }
+    }
     void SeparatePlayersIntoTeams()
     {
         Player[] players = PhotonNetwork.PlayerList;
@@ -135,6 +163,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     void RPC_OpenAgentSelectionPanel()
     {
         MenuManager.instance.OpenMenu("agentpanel");
+        StartTimer();
 
         // Clear existing content in the agent selection panel
         foreach (Transform child in TeamListContent)
@@ -179,8 +208,15 @@ public class Launcher : MonoBehaviourPunCallbacks
         }
     }
 
-       
 
+    public void OpenMainLevel()
+    {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(1);
+        }
+       
+    }
 
 
     public void LeaveRoom()
