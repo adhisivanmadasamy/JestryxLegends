@@ -2,6 +2,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -20,10 +21,17 @@ public class MatchManager : MonoBehaviour
 
     public PlayerController localPlayerController;
 
+    public GameObject SpikeSpawnLocation;
+
+    public GameObject Spike;
+
+
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         BuyTimeStart();
+        SpawnSpike();
+       
     }
 
     // Update is called once per frame
@@ -41,6 +49,16 @@ public class MatchManager : MonoBehaviour
         else if (isDefusePhase)
         {
             
+        }
+    }
+
+
+    public void SpawnSpike()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Spike = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "SpikeObj"), SpikeSpawnLocation.transform.position, SpikeSpawnLocation.transform.rotation);
+            Debug.Log("Spike spawned");
         }
     }
 

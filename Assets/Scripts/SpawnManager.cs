@@ -28,11 +28,13 @@ public class SpawnManager : MonoBehaviour
         if (PhotonNetwork.LocalPlayer.CustomProperties["Team"].ToString() == currentAttack[TeamIndex])
         {
             spawnpoints = AttackSpawn.GetComponentsInChildren<Spawnpoint>();
+            Debug.Log("No of Spawnpoints: "+spawnpoints.Length);
             PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable { { "PlayMode", PlayModeAttack } });
         }
         else
         {
             spawnpoints = DefenceSpawn.GetComponentsInChildren<Spawnpoint>();
+            Debug.Log("No of Spawnpoints: " + spawnpoints.Length);
             PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable { { "PlayMode", PlayModeDefense } });
         }
     }
@@ -55,6 +57,8 @@ public class SpawnManager : MonoBehaviour
         {
             index = 2;
         }
+
+        Debug.Log("Index:"+index+"Name: "+Agent);
 
         return spawnpoints[index].transform;
     }

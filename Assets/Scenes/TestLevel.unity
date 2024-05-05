@@ -3268,7 +3268,7 @@ MonoBehaviour:
   StartGameButton: {fileID: 1390517936}
   TeamNameText: {fileID: 2062325583}
   PlayerNameText: {fileID: 1057376906}
-  TimeDuration: 30
+  TimeDuration: 60
   isTimerOn: 0
   CurrentTime: 0
   TimeText: {fileID: 997481050}

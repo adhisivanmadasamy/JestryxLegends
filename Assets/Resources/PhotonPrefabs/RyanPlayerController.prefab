@@ -943,7 +943,10 @@ MonoBehaviour:
   - {fileID: 1941956464121514985}
   Pistol: {fileID: 0}
   Rifle: {fileID: 0}
+  Knife: {fileID: 0}
   moveAmount: {x: 0, y: 0, z: 0}
+  hasSpike: 0
+  SpikeCanvas: {fileID: 0}
 --- !u!114 &9090585926209678403
 MonoBehaviour:
   m_ObjectHideFlags: 0

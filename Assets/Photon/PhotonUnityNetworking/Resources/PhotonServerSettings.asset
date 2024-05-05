@@ -44,6 +44,11 @@ MonoBehaviour:
   - SyncSelectedAgent
   - RPC_OpenAgentSelectionPanel
   - SyncItems
+  - RPC_sync_Spike
+  - DestroySpike
+  - DestroySpikeOthers
+  - PickUpSpikeRPC
+  - RPC_Sync_Spike
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
