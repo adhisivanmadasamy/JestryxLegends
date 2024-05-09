@@ -58,6 +58,7 @@ MonoBehaviour:
   - RPC_Won
   - RPC_ReloadLevel
   - RPC_LoadLevelForAll
+  - RPC_KillPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

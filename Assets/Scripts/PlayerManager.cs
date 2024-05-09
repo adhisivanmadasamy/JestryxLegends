@@ -46,10 +46,21 @@ public class PlayerManager : MonoBehaviour
     public void Die()
     {        
         MenuManager.instance.OpenMenu("DeadPanel");
-        controller.GetComponent<PlayerController>().isDead = true;        
+        controller.GetComponent<PlayerController>().isDead = true;
+        int DeadVID = controller.GetComponent<PhotonView>().ViewID;
+        MeshRenderer[] MRs = GetComponentsInChildren<MeshRenderer>();
+        PhotonNetwork.Destroy(controller);
+        Debug.Log("Player dead");   
 
-        Debug.Log("Player dead");
+        
+
+        
+
+        
        
     }
-    
+
+   
+
+
 }

@@ -50,6 +50,8 @@ public class MatchManager : MonoBehaviour
 
     List<Camera> teamCameras = new List<Camera>();
 
+    public GameObject BuyBlocks;
+
     // Start is called before the first frame update
     void Start()
     {        
@@ -79,6 +81,7 @@ public class MatchManager : MonoBehaviour
         }
         else if(isMatchPhase)
         {
+            DestroyBuyBlocks();
             IconBuyPhase.SetActive(false);
             MatchTimerRun();
         }
@@ -98,6 +101,10 @@ public class MatchManager : MonoBehaviour
         }
     }
 
+    public void DestroyBuyBlocks()
+    {
+        Destroy(BuyBlocks);
+    }
     public void UIScoreUpdate()
     {        
 
@@ -426,7 +433,13 @@ public class MatchManager : MonoBehaviour
         }
     }
 
+    public void GoHome()
+    {
 
+        Application.Quit();
+        
+        
+    }
 
 
 

@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -78,24 +79,36 @@ public class ScoreManager : MonoBehaviour
 
     public void CheckMatchOver()
     {
-        if(attackScore >= 1 ||  defenseScore >= 1)
+        if(attackScore >= 5)
         {
-            Debug.Log("Game over");
+            if((string)PhotonNetwork.LocalPlayer.CustomProperties["PlayMode"] == "Attack")
+            {
+                MenuManager.instance.OpenMenu("WinScore");
+            }
+            else
+            {
+                MenuManager.instance.OpenMenu("LoseScore");
+            }
+                        
+        
+            
+        }
+        else if(defenseScore >=5)
+        {            
 
-            
-            
-            
+            if ((string)PhotonNetwork.LocalPlayer.CustomProperties["PlayMode"] == "Defense")
+            {
+                MenuManager.instance.OpenMenu("WinScore");
+            }
+            else
+            {
+                MenuManager.instance.OpenMenu("LoseScore");
+            }
         }
         else
         {
             PhotonNetwork.LoadLevel(1);
-        }
-        
-
-        
-           
-            
-        
+        }  
         
     }
 

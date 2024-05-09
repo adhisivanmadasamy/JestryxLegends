@@ -6,6 +6,13 @@ using UnityEngine;
 public class SingleShotGun : Gun
 {
     [SerializeField] Camera cam;
+
+    public PlayerController controller;
+
+    public void Start()
+    {
+        controller = GetComponentInParent<PlayerController>();
+    }
     public override void Use()
     {
         Shoot();
@@ -13,6 +20,7 @@ public class SingleShotGun : Gun
 
     public void Shoot()
     {
+        controller.playeraudio.pistolSound();
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         ray.origin = cam.transform.position;
         if(Physics.Raycast(ray, out RaycastHit hitInfo))

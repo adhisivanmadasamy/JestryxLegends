@@ -50,16 +50,20 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public bool isDead = false;
 
+    //
+    public AudioManager playeraudio;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();
+       
 
         playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     private void Start()
     {
+        playeraudio = GetComponentInChildren<AudioManager>();
         if (PV.IsMine)
         {
             EquipItem(0);
@@ -172,6 +176,11 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         if(isDead == true)
         {
             Look();
+            MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
+            foreach(MeshRenderer meshRenderer in meshRenderers)
+            {
+                meshRenderer.enabled = false;
+            }
         }   
 
 
@@ -190,6 +199,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     void Move()
     {
+        playeraudio.runSound();
         Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
         moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed), ref smoothMoveVelocity, smoothTime);
 
@@ -199,6 +209,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     {
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
+            playeraudio.jumpSound();
             scaledJumpforce = jumpForce * Time.fixedDeltaTime;
             rb.AddForce(transform.up * scaledJumpforce, ForceMode.Impulse);
         }
@@ -280,6 +291,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public void StartPlanting()
     {
+        playeraudio.spikeplantedSound();
         isPlanting = true;
         plantTimer = 0f;
     }
@@ -411,6 +423,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         {
             DropSpike();
         }
+        
         playerManager.Die();
 
     }
