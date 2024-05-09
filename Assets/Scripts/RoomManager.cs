@@ -9,6 +9,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
 {
   public static RoomManager Instance;
 
+    public bool ComingBack;
+    PhotonView PV;
+
     private void Awake()
     {
         if(Instance)
@@ -18,6 +21,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
         DontDestroyOnLoad(gameObject);
         Instance = this;
+        PV = GetComponent<PhotonView>();
+        PV.ViewID = (int)Random.Range(500, 998);
     }
 
     public override void OnEnable()

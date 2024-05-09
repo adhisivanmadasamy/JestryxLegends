@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -11,11 +12,15 @@ public class MatchManager : MonoBehaviour
 {
 
     public int OwnScore, EnemyScore;
+    public TextMeshProUGUI OwnScoreUI, EnemyScoreUI;
+
     public float currentTime, MaxBuyTime, MaxMatchTime, MaxDefuseTime;
 
-    public bool isBuyPhase, isMatchPhase = false, isDefusePhase = false;
+    public bool isBuyPhase =true, isMatchPhase = false, isDefusePhase = false;
 
     public TextMeshProUGUI TimeText;
+
+    public GameObject IconBuyPhase, IconSpike;
 
     public bool isBuyWindowOpen;
 
@@ -25,13 +30,42 @@ public class MatchManager : MonoBehaviour
 
     public GameObject Spike;
 
+    public GameObject PlantArea1, PlantArea2;
+
+    public bool isMatchOver = false;
+    public float MaxEndTime = 5f;
+
+    public string WonTeam;
+    private int currentCameraIndex = 0;
+    public RenderTexture renderTexture;
+
+    public ScoreManager scoreManager;
+
+    public bool RoundOver = false;
+
+    public PhotonView PV;
+    public Player localPlayer;
+
+    public string localPlayMode;
+
+    List<Camera> teamCameras = new List<Camera>();
 
     // Start is called before the first frame update
     void Start()
     {        
         BuyTimeStart();
         SpawnSpike();
-       
+        PV = GetComponent<PhotonView>();   
+        
+        scoreManager = FindObjectOfType<ScoreManager>();
+
+        localPlayer = PhotonNetwork.LocalPlayer;        
+        GameObject localObj = localPlayer.TagObject as GameObject;
+
+        localPlayMode = (string)localPlayer.CustomProperties["PlayMode"];
+
+        
+
     }
 
     // Update is called once per frame
@@ -39,19 +73,60 @@ public class MatchManager : MonoBehaviour
     {
         if(isBuyPhase)
         {
+            IconBuyPhase.SetActive(true);
             BuyTimerRun();
             ToggleBuy();
         }
         else if(isMatchPhase)
         {
+            IconBuyPhase.SetActive(false);
             MatchTimerRun();
         }
         else if (isDefusePhase)
         {
-            
+            Destroy(PlantArea1);
+            Destroy(PlantArea2);
+            IconBuyPhase.SetActive(false);
+            IconSpike.SetActive(true);
+            DefuseTimerRun();
+        }
+        else if(isMatchOver)
+        {
+            IconSpike.SetActive(false);
+            EndTimerRun();
+
         }
     }
 
+    public void UIScoreUpdate()
+    {        
+
+        if (localPlayMode != null)
+        {
+            if (localPlayMode == "Attack")
+            {
+                OwnScore = scoreManager.attackScore;
+                EnemyScore = scoreManager.defenseScore;
+                OwnScoreUI.text = OwnScore.ToString();
+                EnemyScoreUI.text = EnemyScore.ToString();
+            }
+            else if (localPlayMode == "Defense")
+            {
+                OwnScore = scoreManager.defenseScore;
+                EnemyScore = scoreManager.attackScore;
+                OwnScoreUI.text = OwnScore.ToString();
+                EnemyScoreUI.text = EnemyScore.ToString();
+            }
+        }
+        else
+        {
+            Debug.Log("Local playMode null, MatchManager UIScoreUpdate");
+        }
+        
+        
+
+    }
+    
 
     public void SpawnSpike()
     {
@@ -80,6 +155,54 @@ public class MatchManager : MonoBehaviour
         isDefusePhase = true;
     }
 
+    public void EndTimerStart(string team)
+    {
+        WonTeam = team;
+        Debug.Log("Won team: " + WonTeam);
+        currentTime = MaxEndTime;
+        isMatchPhase = false;
+        isDefusePhase = false;
+        isMatchOver = true;
+
+        if(WonTeam == "Attack")
+        {
+            AttackWon();
+            
+            //Level Reload or server data send
+            Debug.Log("Going to Next level: Attack Won");
+            if (PhotonNetwork.IsMasterClient)
+            {
+                //Score update
+                scoreManager.attackScore += 1;
+                scoreManager.UpdateScoreToRoom();
+            }
+            else
+            {
+                Debug.Log("Not master client, waiting...");
+            }            
+        }
+        else if (WonTeam == "Defense")
+        {
+            DefenseWon();
+            
+            //Level Reload or server data send
+            Debug.Log("Going to Next level: Defense Won");
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                scoreManager.defenseScore += 1;
+                scoreManager.UpdateScoreToRoom();
+            }
+            else
+            {
+                Debug.Log("Not master client, waiting...");
+            }
+
+            
+        }       
+    }
+
+
     public void BuyTimerRun()
     {
         currentTime -= Time.deltaTime;
@@ -99,15 +222,66 @@ public class MatchManager : MonoBehaviour
         if (currentTime <= 0f)
         {
             isMatchPhase = false;
-            MatchOver();
+
+            EndTimerStart("Defense");
         }
     }
 
-    public void MatchOver()
+    public void DefuseTimerRun()
     {
-
+        currentTime -= Time.deltaTime;
+        TimeText.text = FormatTime(currentTime);
+        if (currentTime <= 0f)
+        {
+            isDefusePhase = false;           
+            EndTimerStart("Attack");
+        }
     }
 
+    public void EndTimerRun()
+    {
+        
+        currentTime -= Time.deltaTime;
+        TimeText.text = FormatTime(currentTime);
+        if( currentTime <= 0f)
+        {
+            if(RoundOver == false)
+            {
+                string team = WonTeam;
+                scoreManager.CheckMatchOver();
+                RoundOver = true;
+                
+            }
+            
+        }
+    }
+
+    public void AttackWon()
+    {
+        Debug.Log("Attackers Won");
+        PV.RPC("RPC_Won", RpcTarget.All, "Attack");
+        
+    }
+
+    public void DefenseWon()
+    {
+        Debug.Log("Defense Won");
+        PV.RPC("RPC_Won", RpcTarget.All, "Defense");
+    }
+
+
+    [PunRPC]
+    public void RPC_Won(string Mode)
+    {
+        if ((string)PhotonNetwork.LocalPlayer.CustomProperties["PlayMode"] == Mode)
+        {
+            MenuManager.instance.OpenMenu("Victory");
+        }
+        else
+        {
+            MenuManager.instance.OpenMenu("Defeat");
+        }
+    }
     string FormatTime(float timeInSeconds)
     {
         int minutes = Mathf.FloorToInt(timeInSeconds / 60);
@@ -182,13 +356,83 @@ public class MatchManager : MonoBehaviour
     {
         Debug.Log("Test Button");
     }
+    public void SpectateInit()
+    {
+        
+        string localPlayMode = (string)PhotonNetwork.LocalPlayer.CustomProperties["PlayMode"];
+        string localPlayerName = (string)PhotonNetwork.LocalPlayer.NickName;
+        // Find all GameObjects with the "PlayerCamera" tag
+        PlayerCam[] playerCameraHolders = FindObjectsOfType<PlayerCam>();
+        Debug.Log("No of Camera Holders: " + playerCameraHolders.Length);
 
-    
+        foreach (PlayerCam playerCameraHolder in playerCameraHolders)
+        {
+            PhotonView playerPV = playerCameraHolder.gameObject.GetComponentInParent<PhotonView>();
+            if((string)playerPV.Owner.CustomProperties["PlayMode"] == localPlayMode)
+            {
+                if(playerPV.Owner.NickName != localPlayerName)
+                {
+                    Camera camera = playerCameraHolder.GetComponentInChildren<Camera>();
+                    teamCameras.Add(camera);
+                }
+                
+            }
+
+            
+        }
+        
+        Debug.Log("Cameras count: " + teamCameras.Count);
+        Debug.Log(teamCameras[0] + " is " + renderTexture);
+        teamCameras[0].targetTexture = renderTexture;
+    }
+       
+
+    public void CycleNextCamera()
+    {
+        if (teamCameras.Count == 0)
+        {
+            Debug.LogWarning("No cameras found for spectating.");
+            return;
+        }
+
+        currentCameraIndex = (currentCameraIndex + 1) % teamCameras.Count;
+        UpdateRenderTexture();
+    }
+    public void UpdateRenderTexture()
+    {
+        Camera currentCamera = teamCameras[currentCameraIndex];
+        currentCamera.GetComponent<Camera>().targetTexture = renderTexture;
+
+        // Reset previous camera's target texture
+        foreach (Camera camera in teamCameras)
+        {
+            if (camera != currentCamera)
+            {
+                camera.targetTexture = null;
+            }
+        }
+    }
+
+    public void RemoveCamera(Camera cameraToRemove)
+    {
+        if (teamCameras.Contains(cameraToRemove))
+        {
+            teamCameras.Remove(cameraToRemove);
+            if (teamCameras.Count > 0 && currentCameraIndex >= teamCameras.Count)
+            {
+                currentCameraIndex = 0;
+            }
+            UpdateRenderTexture();
+        }
+    }
 
 
-    // Define the items array and other variables here
 
-    
+
+
+
+
+
 
 
 }

@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -37,6 +38,18 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public GameObject SpikeCanvas;
 
+    public bool CanPlant = false;
+    public bool isPlanting = false;
+    public float plantTimer = 0f, PlantMaxTime = 4f;
+    public bool isPlanted = false;
+
+    public bool CanDefuse =false;
+    public bool isDefusing =false;
+    public float defuseTimer = 0f, DefuseMaxTime = 4f;
+    public bool isDefused = false;
+
+    public bool isDead = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -61,51 +74,107 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     }
     private void Update()
     {
-        if (!PV.IsMine)
+        if (isDead == false)
+        {
+            if (!PV.IsMine)
             return;
 
-        Look();
-        Move();
+        
+            Look();
+            Move();
+                       
 
-
-
-        //for(int i = 0; i < items.Length; i++)
-        // {
-        //     if(Input.GetKeyDown((i + 1).ToString()))
-        //     {
-        //        EquipItem(i); 
-        //        break;
-        //    }
-        //}
-
-        if (Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
-        {
-            if (itemIndex >= items.Length - 1)
+            //Weapon Equip with scroll
+            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
             {
-                EquipItem(0);
+                if (itemIndex >= items.Length - 1)
+                {
+                    EquipItem(0);
+                }
+                else
+                {
+                    EquipItem(itemIndex + 1);
+                }
             }
-            else
+            else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
             {
-                EquipItem(itemIndex + 1);
+                if (itemIndex <= 0)
+                {
+                    EquipItem(items.Length - 1);
+                }
+                else
+                {
+                    EquipItem(itemIndex - 1);
+                }
+
             }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                items[itemIndex].Use();
+            }
+
+            // - - - -
+
+            //Planting Update
+            if (isPlanted == false)
+            {
+                if (hasSpike == true && CanPlant == true && isPlanting == false && Input.GetKeyDown(KeyCode.P))
+                {
+                    StartPlanting();
+                    Debug.Log("Planting Started");
+                }
+
+                if (isPlanting)
+                {
+                    UpdatePlantTimer();
+                }
+
+                if (isPlanting)
+                {
+                    if (!Input.GetKey(KeyCode.P))
+                    {
+                        isPlanting = false;
+                        Debug.Log("Plant interupted");
+                    }
+                }
+
+            }
+
+
+            // - - - -
+
+            //Defuse Update
+            if (isPlanted == true && isDefused == false)
+            {
+                if (CanDefuse == true && isDefusing == false && Input.GetKeyDown(KeyCode.P))
+                {
+                    StartDefusing();
+                    Debug.Log("Defusing started");
+                }
+
+                if (isDefusing)
+                {
+                    UpdateDiffuseTimer();
+                    if (!Input.GetKey(KeyCode.P))
+                    {
+                        isDefusing = false;
+                        Debug.Log("Defuse Interupted");
+                    }
+                }
+
+            }
+
+
         }
-        else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
-        {
-            if (itemIndex <= 0)
-            {
-                EquipItem(items.Length - 1);
-            }
-            else
-            {
-                EquipItem(itemIndex - 1);
-            }
 
-        }
-
-        if (Input.GetMouseButtonDown(0))
+        // Only look after dead
+        if(isDead == true)
         {
-            items[itemIndex].Use();
-        }
+            Look();
+        }   
+
+
     }
 
     void Look()
@@ -157,19 +226,20 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
             PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
         }
 
-
     }
 
 
+    //Sync Guns when changed across players
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
-        if (!PV.IsMine && targetPlayer == PV.Owner)
-        {
-            EquipItem((int)changedProps["ItemIndex"]);
-
-        }
         
+        if (!PV.IsMine && targetPlayer == PhotonNetwork.LocalPlayer)
+        {
+            //EquipItem((int)changedProps["ItemIndex"]);
+        }
     }
+
+    
     public void SetGroundedState(bool _grounded)
     {
         grounded = _grounded;
@@ -193,31 +263,158 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     //PickUp Spike
     public void PickUpSpike(GameObject gameObject)
     {
+        hasSpike = true;
         gameObject.transform.parent = transform;
         gameObject.transform.GetComponentInChildren<MeshRenderer>().enabled = false;
-        int ownerViewID = photonView.ViewID;
-        photonView.RPC("RPC_Sync_Spike", RpcTarget.OthersBuffered, ownerViewID);
-    }
+        gameObject.transform.GetComponent<BoxCollider>().enabled = false;
+        int ownerViewID = PV.ViewID;
+        Debug.Log("SPike picked - Own");
 
-    public void DropSpike()
-    {
-        // Set custom property to indicate that the player has dropped the spike
-        Hashtable hash = new Hashtable();
-        hash.Add("HasSpike", false);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
-
-        // Other logic for dropping the spike
-    }
-
-
-   
+        SpikeCanvas.SetActive(true);
+        PV.RPC("RPC_Sync_Spike", RpcTarget.OthersBuffered, ownerViewID);
+    }      
     
 
+
+   //Planting Spike
+
+    public void StartPlanting()
+    {
+        isPlanting = true;
+        plantTimer = 0f;
+    }
+    
+    //Defuse Start
+    public void StartDefusing()
+    {
+        isDefusing = true;
+        defuseTimer = 0f;
+    }
+
+    //Update plant
+    public void UpdatePlantTimer()
+    {
+        plantTimer += Time.deltaTime;
+        if ((plantTimer >= PlantMaxTime))
+        {
+            SpikePlanted();
+            isPlanting=false;
+            isPlanted = true;
+            plantTimer = 0;
+        }
+        
+    }
+
+
+    //Update defuse
+    public void UpdateDiffuseTimer()
+    {
+        defuseTimer += Time.deltaTime;
+        if( defuseTimer > DefuseMaxTime )
+        {
+            SpikeDefused(); 
+                      
+        }
+    }
+
+    //Spike defused
+    public void SpikeDefused()
+    {
+        isDefused = true;
+        Debug.Log("Spike Defused");
+
+        MatchManager matchManager = FindObjectOfType<MatchManager>();
+        matchManager.EndTimerStart("Defense");
+
+        //RPC Call
+        PV.RPC("RPC_Defused", RpcTarget.OthersBuffered);
+    }
+
+    //Spike planted - Local
+    public void SpikePlanted()
+    {
+        
+        Transform oldSpike = transform.Find("SpikeObj(Clone)");
+        if (oldSpike != null)
+        {
+            oldSpike.parent = null;
+            Transform NewSpikeSpawn = oldSpike.transform;
+            Destroy(GameObject.FindGameObjectWithTag("Spike"));
+            Debug.Log("Destroyed Old spike");
+
+            GameObject NewSpike = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "NewSpike"), NewSpikeSpawn.position, NewSpikeSpawn.rotation);
+            Debug.Log("Spawned New Spike");
+
+            GameObject[] PlantAreas = GameObject.FindGameObjectsWithTag("PlantArea");
+            Destroy(PlantAreas[0]);
+            Destroy(PlantAreas[1]);            
+
+            isPlanted = true;
+            MatchManager matchManager = FindObjectOfType<MatchManager>();
+            matchManager.isMatchPhase = false;
+            matchManager.DefuseTimeStart();
+
+            PV.RPC("RPC_Test", RpcTarget.OthersBuffered);
+
+            int PVID = PV.ViewID;
+            PV.RPC("RPC_Planted", RpcTarget.OthersBuffered, PVID);
+
+            SpikeCanvas.SetActive(false);
+
+            isPlanted = true;
+        }
+        else
+        {
+            Debug.LogError("SpikeObj(Clone) GameObject not found!");
+        }
+
+        Debug.Log("Spike planted");
+    }
+
+    //Spike drop - Local
+    public void DropSpike()
+    {
+        
+        Transform oldSpike = transform.Find("SpikeObj(Clone)");
+        if(oldSpike != null)
+        {
+            oldSpike.parent = null;
+            oldSpike.GetComponentInChildren<MeshRenderer>().enabled = true;
+            oldSpike.GetComponent<BoxCollider>().enabled = true;
+            oldSpike.GetComponent<SpikeScript>().isPicked = false;
+            Debug.Log("Spike droppped - own");
+        }
+        else
+        {
+            Debug.Log("Error - Couldn't find spike");
+        }
+
+        int PViewID = PV.ViewID;
+        PV.RPC("RPC_Drop", RpcTarget.OthersBuffered, PViewID);
+
+        hasSpike = false;
+    }
+
+
+    //Take Damage
     public void TakeDamage(float damage)
     {
 
         PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
     }
+
+
+    //Die
+    void Die()
+    {
+        if(PV.GetComponent<PlayerController>().hasSpike == true)
+        {
+            DropSpike();
+        }
+        playerManager.Die();
+
+    }
+
 
     [PunRPC]
     void RPC_TakeDamage(float damage)
@@ -230,14 +427,14 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         currentHealth -= damage;
 
         if (currentHealth <= 0f)
-        {
+        {            
             Die();
         }
     }
 
 
     [PunRPC]
-    private void RPC_Sync_Spike(int ownerViewID)
+    public void RPC_Sync_Spike(int ownerViewID)
     {
         GameObject gameObject = GameObject.FindGameObjectWithTag("Spike");
         PhotonView ownerView = PhotonView.Find(ownerViewID);
@@ -245,8 +442,87 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         {
             Transform ownerTransform = ownerView.transform;
             gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+            gameObject.transform.GetComponent<BoxCollider>().enabled = false;
             gameObject.transform.parent = ownerTransform;
+            if ((string)PhotonNetwork.LocalPlayer.CustomProperties["PlayMode"] == "Attack")
+            {
+                ownerView.GetComponent<PlayerController>().SpikeCanvas.SetActive(true);
+                ownerView.GetComponent<PlayerController>().hasSpike = true;
+            }            
         }
+        Debug.Log("Spike picked up - sync");
+        return;
+    }
+
+    [PunRPC]
+    public void RPC_Test()
+    {
+        Debug.Log("Test RPC call working");
+    }
+    
+    [PunRPC]
+    public void RPC_Planted(int PVID)
+    {
+        Debug.Log("Sync Start ///");
+
+        PlayerController plantedPlayerController = PhotonView.Find(PVID).GetComponent<PlayerController>();
+        GameObject plantedGO = plantedPlayerController.gameObject;
+
+        plantedPlayerController.SpikeCanvas.SetActive(false);
+
+        GameObject spike = GameObject.FindGameObjectWithTag("Spike");
+        Destroy(spike); 
+        Debug.Log("Old spike destroyed");
+
+        PV.GetComponent<PlayerController>().isPlanted = true;
+        Debug.Log("isPlanted: " + PV.GetComponent<PlayerController>().isPlanted.ToString());
+
+
+        MatchManager matchManager2 = FindObjectOfType<MatchManager>();
+        matchManager2.isMatchPhase = false;
+        matchManager2.DefuseTimeStart();
+
+        Debug.Log("Sync End ///");
+    }
+
+    [PunRPC]
+    public void RPC_Drop(int viewID)
+    {
+        PlayerController plantedPlayerController = PhotonView.Find(viewID).GetComponent<PlayerController>();
+        GameObject plantedGO = plantedPlayerController.gameObject;
+        
+
+        GameObject spike = GameObject.FindGameObjectWithTag("Spike");
+        if(spike != null)
+        {
+            spike.transform.parent = null;
+            spike.GetComponentInChildren<MeshRenderer>().enabled = true;
+            spike.GetComponent<BoxCollider>().enabled = true;
+            spike.GetComponent<SpikeScript>().isPicked = false;
+        }
+        else
+        {
+            Debug.Log("Couldn't find spike");
+        }
+        
+
+        plantedPlayerController.hasSpike = false;
+        plantedPlayerController.SpikeCanvas.SetActive(false);
+        
+        Debug.Log("Spike droppped - sync");
+
+    }
+
+    [PunRPC]
+    public void RPC_Defused()
+    {
+        PV.GetComponent<PlayerController>().isDefused = true;
+        Debug.Log("Spike Defused");
+
+        MatchManager matchManager = FindObjectOfType<MatchManager>();
+        matchManager.EndTimerStart("Defense");
+
+        Debug.Log("End synced");
     }
 
     [PunRPC]
@@ -256,17 +532,9 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         items = updatedItems;
     }
 
-    [PunRPC]
-    public void DestroySpikeOthers()
-    {
-
-    }
+    
     
 
-    void Die()
-    {
-        playerManager.Die();
-
-    }
+    
 
 }

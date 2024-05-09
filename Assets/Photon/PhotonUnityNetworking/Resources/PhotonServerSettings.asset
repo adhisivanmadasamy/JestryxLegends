@@ -49,6 +49,15 @@ MonoBehaviour:
   - DestroySpikeOthers
   - PickUpSpikeRPC
   - RPC_Sync_Spike
+  - RPC_sync_planted
+  - RPC_sync_planted2
+  - RPC_Test
+  - RPC_Planted
+  - RPC_Defused
+  - RPC_Drop
+  - RPC_Won
+  - RPC_ReloadLevel
+  - RPC_LoadLevelForAll
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

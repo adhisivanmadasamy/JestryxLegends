@@ -35,6 +35,15 @@ public class Launcher : MonoBehaviourPunCallbacks
     public float CurrentTime;
     public TextMeshProUGUI TimeText;
 
+    public bool ComingBack = false;
+
+
+    private const string AttackScoreKey = "AttackScore";
+    private const string DefenseScoreKey = "DefenseScore";
+
+    private int attackScore = 0;
+    private int defenseScore = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -43,7 +52,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     void Start()
     {        
         Debug.Log("Connecting...");
-        PhotonNetwork.ConnectUsingSettings();        
+        PhotonNetwork.ConnectUsingSettings();   
     }
 
     public void Update()
@@ -51,6 +60,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         TimerRun();
     }
 
+    public void BackToRoom()
+    {
+        MenuManager.instance.OpenMenu("inroompanel");
+
+    }
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to MasterServer");
@@ -213,11 +227,19 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsMasterClient)
         {
+            SetLevel1();
             PhotonNetwork.LoadLevel(1);
         }
        
     }
 
+    public void SetLevel1()
+    {
+        ExitGames.Client.Photon.Hashtable roomProps = new ExitGames.Client.Photon.Hashtable();
+        roomProps[AttackScoreKey] = 0;
+        roomProps[DefenseScoreKey] = 0;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
+    }
 
     public void LeaveRoom()
     {

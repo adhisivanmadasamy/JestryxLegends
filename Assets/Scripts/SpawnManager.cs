@@ -18,7 +18,11 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        
 
         int TeamIndex = Random.Range(0, 1);
         string[] currentAttack = { "TeamA", "TeamB" };

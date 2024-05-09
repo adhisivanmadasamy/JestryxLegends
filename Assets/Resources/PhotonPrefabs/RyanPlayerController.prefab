@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2509952052103283253}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: PlayerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -947,6 +947,16 @@ MonoBehaviour:
   moveAmount: {x: 0, y: 0, z: 0}
   hasSpike: 0
   SpikeCanvas: {fileID: 0}
+  CanPlant: 0
+  isPlanting: 0
+  plantTimer: 0
+  PlantMaxTime: 4
+  isPlanted: 0
+  CanDefuse: 0
+  isDefusing: 0
+  defuseTimer: 0
+  DefuseMaxTime: 4
+  isDefused: 0
 --- !u!114 &9090585926209678403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,6 +1007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2184947367383024459}
+  - component: {fileID: 7984328738408657487}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -1021,6 +1032,18 @@ Transform:
   - {fileID: 6293319670775748794}
   m_Father: {fileID: 5165632879992486087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7984328738408657487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275507826090114675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49de602b40f56e34cbf3af28287dc462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8849838068722691386
 GameObject:
   m_ObjectHideFlags: 0

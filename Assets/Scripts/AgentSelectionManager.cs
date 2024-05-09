@@ -51,6 +51,7 @@ public class AgentSelectionManager : MonoBehaviourPunCallbacks
             // Sync selected agent across all players
             photonView.RPC("SyncSelectedAgent", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, selectedAgent);
 
+            //Enabling the lock button after selecting a character
             lockButton.SetActive(true);
         }
     }
@@ -58,31 +59,25 @@ public class AgentSelectionManager : MonoBehaviourPunCallbacks
     public void LockAgents()
     {
         agentsLocked = true;
-        lockButton.SetActive(false); // Hide the lock button
+        lockButton.SetActive(false); // Hide the lock button after locking
 
         // Update selected agent in the player's custom properties
         string selectedAgent = selectedAgents[PhotonNetwork.LocalPlayer.ActorNumber];
         Hashtable hash = new Hashtable();
         hash.Add("SelectedAgent", selectedAgent);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
-
-        // Sync locked status and selected agent across all players
-        //photonView.RPC("SyncLockStatus", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, true, selectedAgent);
-
-
+       
+        //Hiding the Char buttons
         ConnorButton.SetActive(false);
         RyanButton.SetActive(false);
         ChloeButton.SetActive(false);
 
-        // Assuming you have access to the current player's team information
+        //Local Player's Team
         string currentPlayerTeam = (string)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
 
-        // Replace RpcTarget.All with RpcTarget.Others to target other players only
+        // Locally done the locking, so syncing to other players
         photonView.RPC("SyncLockStatus", RpcTarget.Others, PhotonNetwork.LocalPlayer.ActorNumber, agentsLocked, selectedAgent, currentPlayerTeam);
-
-        //photonView.RPC("SyncLockStatus", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, agentsLocked, selectedAgent);
-
-        
+                
     }
 
     
@@ -125,7 +120,6 @@ public class AgentSelectionManager : MonoBehaviourPunCallbacks
     {
         selectedAgents[actorNumber] = selectedAgent;
         UpdatePlayerUI(actorNumber, selectedAgent);
-
     }
 
     

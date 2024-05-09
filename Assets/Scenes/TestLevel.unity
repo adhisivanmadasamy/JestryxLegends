@@ -3268,10 +3268,11 @@ MonoBehaviour:
   StartGameButton: {fileID: 1390517936}
   TeamNameText: {fileID: 2062325583}
   PlayerNameText: {fileID: 1057376906}
-  TimeDuration: 60
+  TimeDuration: 5
   isTimerOn: 0
   CurrentTime: 0
   TimeText: {fileID: 997481050}
+  ComingBack: 0
 --- !u!4 &936813571
 Transform:
   m_ObjectHideFlags: 0
@@ -5435,6 +5436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be4b9fe90bb48c45bd5a3bde0892304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ComingBack: 0
 --- !u!4 &1413286581
 Transform:
   m_ObjectHideFlags: 0

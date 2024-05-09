@@ -44,12 +44,12 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void Die()
-    {
-        PhotonNetwork.Destroy(controller);
-        Debug.Log("Player dead");
+    {        
+        MenuManager.instance.OpenMenu("DeadPanel");
+        controller.GetComponent<PlayerController>().isDead = true;        
 
-        CreateController();
-        Debug.Log("Player Respawned");
+        Debug.Log("Player dead");
+       
     }
     
 }
