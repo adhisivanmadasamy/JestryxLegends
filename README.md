@@ -1,4 +1,4 @@
-Jestryx Legends - This is a group project for the module - "Connected Games Development" as part of our Masters degree in Kingston University, London.
+Jestryx Legends - This is a group project for the module - "Connected Games Development" as part of our Masters degree in Kingston University, London. 
 
 The game is developed by 
 1. Adhisivan Madasamy - Programmer
@@ -6,7 +6,7 @@ The game is developed by
 3. Ekin Dogan - Designer
 4. Yiwen Zhang
 
-This is a multiplayer FPS Tactical Shooter game targerted for Windows platform. 
+This is a multiplayer FPS Tactical Shooter game targerted for Windows platform 
 Story:
 In a post apocalyptic world, A city "Ancard" is the major survior. Due to the emergence of Radium-T, Scarcity of resources occured. All the lands become
 unfit for crops, animals, humans, greenary, and everything. Ancard is only city that sustained greenary and a modern civilisation. This is because of
